@@ -18,15 +18,15 @@ function HomePage() {
     ];
 
     return (
-        <div className="min-h-screen px-5 pt-8"
-             style={{backgroundColor: '#0D0D0D'}}>
+        <div className="min-h-screen"
+             style={{backgroundColor: '#0D0D0D', padding: '32px 20px 100px 20px'}}>
 
             {/* Header */}
             <motion.div
                 initial={{ opacity: 0, y: -30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.2, ease: 'easeOut' }}
-                className="flex items-center gap-4 mb-6">
+                className="flex items-center gap-4 mb-8">
                 <div className="w-14 h-14 rounded-full border-2 border-teal-400 bg-teal-200 flex items-center justify-center text-2xl cursor-pointer flex-shrink-0">
                     👤
                 </div>
@@ -45,18 +45,13 @@ function HomePage() {
 
             {/* Weekly Goal Button */}
             <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.6 }}>
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.4, type: 'spring', stiffness: 80 }}
+                className="mb-8">
                 <Link to="/venues"
-                      className="flex items-center justify-between mb-8 px-6 py-4 rounded-full"
-                      style={{
-                          backgroundColor: '#2A2A2A',
-                          border: '1px solid #3A3A3A',
-                          transition: 'border-color 0.2s ease'
-                      }}
-                      onMouseEnter={e => e.currentTarget.style.borderColor = '#00BCD4'}
-                      onMouseLeave={e => e.currentTarget.style.borderColor = '#3A3A3A'}>
+                      className="flex items-center justify-between px-6 py-4 rounded-full"
+                      style={{backgroundColor: '#2A2A2A'}}>
                     <span className="text-white font-medium">
                         Set a Weekly Goal
                     </span>
@@ -74,7 +69,7 @@ function HomePage() {
             </motion.h2>
 
             {/* Sport Cards */}
-            <div className="flex flex-col gap-3 mb-6">
+            <div className="flex flex-col gap-3 mb-8">
                 {sports.map((sport) => (
                     <motion.div
                         key={sport.name}
@@ -84,29 +79,36 @@ function HomePage() {
                             delay: sport.delay * 1.5,
                             type: 'spring',
                             stiffness: 60
+                        }}
+                        style={{
+                            borderRadius: '16px',
+                            overflow: 'hidden',
+                            boxShadow: '0 2px 8px rgba(0,0,0,0.3)'
                         }}>
                         <Link to="/venues"
-                              className="flex items-center justify-between px-5 py-4 rounded-2xl block"
+                              className="flex items-center justify-between px-5 py-4 block"
                               style={{
                                   backgroundColor: '#C8F0D8',
-                                  border: '1px solid transparent',
-                                  transition: 'box-shadow 0.2s ease, border-color 0.2s ease'
+                                  transition: 'transform 0.15s ease, filter 0.15s ease',
+                                  display: 'block'
                               }}
                               onMouseEnter={e => {
-                                  e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,188,212,0.25)';
-                                  e.currentTarget.style.borderColor = '#00BCD4';
+                                  e.currentTarget.style.filter = 'brightness(0.92)';
+                                  e.currentTarget.style.transform = 'scale(1.02)';
                               }}
                               onMouseLeave={e => {
-                                  e.currentTarget.style.boxShadow = 'none';
-                                  e.currentTarget.style.borderColor = 'transparent';
+                                  e.currentTarget.style.filter = 'brightness(1)';
+                                  e.currentTarget.style.transform = 'scale(1)';
                               }}>
-                            <div>
-                                <h3 className="text-gray-800 font-bold text-lg">
-                                    {sport.name}
-                                </h3>
-                                <p className="text-gray-600 text-sm">Check Now</p>
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <h3 className="text-gray-800 font-bold text-lg">
+                                        {sport.name}
+                                    </h3>
+                                    <p className="text-gray-600 text-sm">Check Now</p>
+                                </div>
+                                <span className="text-5xl">{sport.emoji}</span>
                             </div>
-                            <span className="text-5xl">{sport.emoji}</span>
                         </Link>
                     </motion.div>
                 ))}
@@ -121,7 +123,7 @@ function HomePage() {
                 Quick Actions
             </motion.h2>
 
-            <div className="grid grid-cols-2 gap-3 mb-24">
+            <div className="grid grid-cols-2 gap-3">
                 {quickActions.map((item, index) => (
                     <motion.div
                         key={item.label}
@@ -132,19 +134,25 @@ function HomePage() {
                             type: 'spring',
                             stiffness: 80
                         }}
-                        className="flex flex-col items-center justify-center gap-2 py-6 rounded-2xl cursor-pointer"
+                        className="flex flex-col items-center justify-center gap-2 py-8 rounded-2xl cursor-pointer"
                         style={{
                             backgroundColor: '#1A2A4A',
-                            border: '1px solid #1E3A6E',
-                            transition: 'box-shadow 0.2s ease, background-color 0.2s ease'
+                            transition: 'transform 0.15s ease, filter 0.15s ease',
+                            boxShadow: '0 2px 8px rgba(0,0,0,0.3)'
                         }}
                         onMouseEnter={e => {
-                            e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,188,212,0.2)';
-                            e.currentTarget.style.backgroundColor = '#1E3A6E';
+                            e.currentTarget.style.filter = 'brightness(1.3)';
+                            e.currentTarget.style.transform = 'scale(1.04)';
                         }}
                         onMouseLeave={e => {
-                            e.currentTarget.style.boxShadow = 'none';
-                            e.currentTarget.style.backgroundColor = '#1A2A4A';
+                            e.currentTarget.style.filter = 'brightness(1)';
+                            e.currentTarget.style.transform = 'scale(1)';
+                        }}
+                        onMouseDown={e => {
+                            e.currentTarget.style.transform = 'scale(0.97)';
+                        }}
+                        onMouseUp={e => {
+                            e.currentTarget.style.transform = 'scale(1.04)';
                         }}>
                         <span className="text-3xl">{item.icon}</span>
                         <span className="text-white text-sm">{item.label}</span>
