@@ -140,7 +140,6 @@ function HomePage() {
                         transition={{ duration: 0.15 }}
                         className="flex flex-col items-center justify-center gap-2 p-6 rounded-2xl cursor-pointer"
                         style={{backgroundColor: '#1A2A4A'}}>
-                        <motion.span
                             animate={{ y: [0, -3, 0] }}
                             transition={{
                                 delay: index * 0.3,
@@ -148,9 +147,7 @@ function HomePage() {
                                 repeat: Infinity,
                                 repeatDelay: 2
                             }}
-                            className="text-3xl">
-                            {item.icon}
-                        </motion.span>
+                        <span className="text-3xl">{item.icon}</span>
                         <span className="text-white text-sm">{item.label}</span>
                     </motion.div>
                 ))}
