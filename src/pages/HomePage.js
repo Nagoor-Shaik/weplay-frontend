@@ -30,6 +30,7 @@ function HomePage() {
                 <motion.div
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                     className="w-14 h-14 rounded-full border-2 border-teal-400 overflow-hidden bg-teal-200 flex items-center justify-center text-2xl cursor-pointer">
                     👤
                 </motion.div>
@@ -70,7 +71,7 @@ function HomePage() {
                 Recents
             </motion.h2>
 
-            {/* Sport Cards */}
+            {/* Sport Cards — NO hover scale */}
             <div className="flex flex-col gap-3 mb-6">
                 {sports.map((sport) => (
                     <motion.div
@@ -81,9 +82,7 @@ function HomePage() {
                             delay: sport.delay * 1.5,
                             type: 'spring',
                             stiffness: 60
-                        }}
-                        whileHover={{ scale: 1.03 }}
-                        whileTap={{ scale: 0.97 }}>
+                        }}>
                         <Link to="/venues"
                               className="flex items-center justify-between px-5 py-4 rounded-2xl block"
                               style={{backgroundColor: '#C8F0D8'}}>
@@ -108,18 +107,23 @@ function HomePage() {
                 Quick Actions
             </motion.h2>
 
-            <div className="grid grid-cols-2 gap-3 mb-24" style={{isolation: 'isolate'}}>
-                {quickActions.map((item) => (
+            <div className="grid grid-cols-2 gap-3 mb-24">
+                {quickActions.map((item, index) => (
                     <motion.div
                         key={item.label}
-                        whileHover={{ scale: 1.04 }}
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                            delay: 0.8 + index * 0.15,
+                            type: 'spring',
+                            stiffness: 80
+                        }}
+                        whileHover={{ backgroundColor: '#1E3A6E' }}
                         whileTap={{ scale: 0.96 }}
-                        transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                         className="flex flex-col items-center justify-center gap-2 p-6 rounded-2xl cursor-pointer"
                         style={{
                             backgroundColor: '#1A2A4A',
-                            transformOrigin: 'center center',
-                            willChange: 'transform'
+                            willChange: 'background-color'
                         }}>
                         <span className="text-3xl">{item.icon}</span>
                         <span className="text-white text-sm">{item.label}</span>
