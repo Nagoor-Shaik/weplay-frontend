@@ -114,9 +114,9 @@ function HomePage() {
                         key={item.label}
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.7 + index * 0.1 }}
                         whileHover={{ backgroundColor: '#1E3A6E' }}
                         whileTap={{ backgroundColor: '#2A4A8E' }}
+                        transition={{ duration: 0.1 }}
                         className="flex flex-col items-center justify-center gap-2 p-6 rounded-2xl cursor-pointer"
                         style={{backgroundColor: '#1A2A4A'}}>
                         <span className="text-3xl">{item.icon}</span>
