@@ -21,7 +21,7 @@ function HomePage() {
         <div className="min-h-screen px-4 pt-8"
              style={{backgroundColor: '#0D0D0D'}}>
 
-            {/* Header — slides down */}
+            {/* Header */}
             <motion.div
                 initial={{ opacity: 0, y: -30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -46,7 +46,7 @@ function HomePage() {
                 </div>
             </motion.div>
 
-            {/* Weekly Goal Button — bounces in */}
+            {/* Weekly Goal Button */}
             <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -54,18 +54,10 @@ function HomePage() {
                 <Link to="/venues"
                       className="flex items-center justify-between mb-8 px-6 py-4 rounded-full"
                       style={{backgroundColor: '#2A2A2A'}}>
-                    <motion.span
-                        className="text-white font-medium"
-                        whileHover={{ x: 4 }}
-                        transition={{ type: 'spring', stiffness: 300 }}>
+                    <span className="text-white font-medium">
                         Set a Weekly Goal
-                    </motion.span>
-                    <motion.span
-                        animate={{ x: [0, 5, 0] }}
-                        transition={{ repeat: Infinity, duration: 2.5 }}
-                        className="text-white text-xl font-bold">
-                        ›
-                    </motion.span>
+                    </span>
+                    <span className="text-white text-xl font-bold">›</span>
                 </Link>
             </motion.div>
 
@@ -78,7 +70,7 @@ function HomePage() {
                 Recents
             </motion.h2>
 
-            {/* Sport Cards — stagger in one by one */}
+            {/* Sport Cards */}
             <div className="flex flex-col gap-3 mb-6">
                 {sports.map((sport) => (
                     <motion.div
@@ -86,14 +78,11 @@ function HomePage() {
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{
-                            delay: sport.delay*1.5,
+                            delay: sport.delay * 1.5,
                             type: 'spring',
                             stiffness: 60
                         }}
-                        whileHover={{
-                            scale: 1.03,
-                            boxShadow: '0 8px 30px rgba(0,188,212,0.2)'
-                        }}
+                        whileHover={{ scale: 1.03 }}
                         whileTap={{ scale: 0.97 }}>
                         <Link to="/venues"
                               className="flex items-center justify-between px-5 py-4 rounded-2xl block"
@@ -104,23 +93,13 @@ function HomePage() {
                                 </h3>
                                 <p className="text-gray-600 text-sm">Check Now</p>
                             </div>
-                            <motion.span
-                                animate={{ rotate: [0, -10, 10, 0] }}
-                                transition={{
-                                    delay: sport.delay + 1,
-                                    duration: 0.8,
-                                    repeat: Infinity,
-                                    repeatDelay: 5
-                                }}
-                                className="text-5xl">
-                                {sport.emoji}
-                            </motion.span>
+                            <span className="text-5xl">{sport.emoji}</span>
                         </Link>
                     </motion.div>
                 ))}
             </div>
 
-            {/* Quick Actions — fade up */}
+            {/* Quick Actions */}
             <motion.h2
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -140,13 +119,6 @@ function HomePage() {
                         transition={{ duration: 0.15 }}
                         className="flex flex-col items-center justify-center gap-2 p-6 rounded-2xl cursor-pointer"
                         style={{backgroundColor: '#1A2A4A'}}>
-                            animate={{ y: [0, -3, 0] }}
-                            transition={{
-                                delay: index * 0.3,
-                                duration: 3,
-                                repeat: Infinity,
-                                repeatDelay: 2
-                            }}
                         <span className="text-3xl">{item.icon}</span>
                         <span className="text-white text-sm">{item.label}</span>
                     </motion.div>
