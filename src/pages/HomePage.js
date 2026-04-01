@@ -27,13 +27,9 @@ function HomePage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.2, ease: 'easeOut' }}
                 className="flex items-center gap-4 mb-6">
-                <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                    className="w-14 h-14 rounded-full border-2 border-teal-400 overflow-hidden bg-teal-200 flex items-center justify-center text-2xl cursor-pointer">
+                <div className="w-14 h-14 rounded-full border-2 border-teal-400 overflow-hidden bg-teal-200 flex items-center justify-center text-2xl cursor-pointer">
                     👤
-                </motion.div>
+                </div>
                 <div>
                     <p className="text-gray-400 text-sm">Welcome back</p>
                     <motion.h1
@@ -71,7 +67,7 @@ function HomePage() {
                 Recents
             </motion.h2>
 
-            {/* Sport Cards — NO hover scale */}
+            {/* Sport Cards */}
             <div className="flex flex-col gap-3 mb-6">
                 {sports.map((sport) => (
                     <motion.div
@@ -82,22 +78,32 @@ function HomePage() {
                             delay: sport.delay * 1.5,
                             type: 'spring',
                             stiffness: 60
-                        }}>
-                        <Link to="/venues"
-                              className="flex items-center justify-between px-5 py-4 rounded-2xl block"
-                              style={{backgroundColor: '#C8F0D8',
-                                  transition: 'opacity 0.08s ease'
-                              }}
-                              onMouseEnter={e => e.currentTarget.style.opacity = '0.8'}
-                              onMouseLeave={e => e.currentTarget.style.opacity = '1'}>
-                            <div>
-                                <h3 className="text-gray-800 font-bold text-lg">
-                                    {sport.name}
-                                </h3>
-                                <p className="text-gray-600 text-sm">Check Now</p>
-                            </div>
-                            <span className="text-5xl">{sport.emoji}</span>
-                        </Link>
+                        }}
+                        style={{ height: '80px' }}>
+                        <motion.div
+                            whileHover={{ scale: 1.03 }}
+                            whileTap={{ scale: 0.98 }}
+                            transition={{
+                                type: 'spring',
+                                stiffness: 400,
+                                damping: 25
+                            }}
+                            style={{
+                                height: '100%',
+                                transformOrigin: 'center center'
+                            }}>
+                            <Link to="/venues"
+                                  className="flex items-center justify-between px-5 py-4 rounded-2xl h-full"
+                                  style={{backgroundColor: '#C8F0D8'}}>
+                                <div>
+                                    <h3 className="text-gray-800 font-bold text-lg">
+                                        {sport.name}
+                                    </h3>
+                                    <p className="text-gray-600 text-sm">Check Now</p>
+                                </div>
+                                <span className="text-5xl">{sport.emoji}</span>
+                            </Link>
+                        </motion.div>
                     </motion.div>
                 ))}
             </div>
@@ -113,27 +119,28 @@ function HomePage() {
 
             <div className="grid grid-cols-2 gap-3 mb-24">
                 {quickActions.map((item, index) => (
-                    <motion.div
-                        key={item.label}
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{
-                            delay: 0.8 + index * 0.15,
-                            type: 'spring',
-                            stiffness: 80
-                        }}
-                        whileHover={{ backgroundColor: '#1E3A6E' }}
-                        whileTap={{ scale: 0.96 }}
-                        className="flex flex-col items-center justify-center gap-2 p-6 rounded-2xl cursor-pointer"
-                        style={{
-                            backgroundColor: '#1A2A4A',
-                            transition: 'background-color 0.08s ease'
-                        }}
-                        onMouseEnter={e => e.currentTarget.style.backgroundColor = '#1E3A6E'}
-                        onMouseLeave={e => e.currentTarget.style.backgroundColor = '#1A2A4A'}>
-                        <span className="text-3xl">{item.icon}</span>
-                        <span className="text-white text-sm">{item.label}</span>
-                    </motion.div>
+                    <div key={item.label}
+                         style={{ height: '120px' }}>
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{
+                                delay: 0.8 + index * 0.15,
+                                type: 'spring',
+                                stiffness: 80
+                            }}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            style={{
+                                backgroundColor: '#1A2A4A',
+                                height: '100%',
+                                transformOrigin: 'center center'
+                            }}
+                            className="flex flex-col items-center justify-center gap-2 p-6 rounded-2xl cursor-pointer">
+                            <span className="text-3xl">{item.icon}</span>
+                            <span className="text-white text-sm">{item.label}</span>
+                        </motion.div>
+                    </div>
                 ))}
             </div>
         </div>
