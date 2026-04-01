@@ -85,7 +85,11 @@ function HomePage() {
                         }}>
                         <Link to="/venues"
                               className="flex items-center justify-between px-5 py-4 rounded-2xl block"
-                              style={{backgroundColor: '#C8F0D8'}}>
+                              style={{backgroundColor: '#C8F0D8',
+                                  transition: 'opacity 0.08s ease'
+                              }}
+                              onMouseEnter={e => e.currentTarget.style.opacity = '0.8'}
+                              onMouseLeave={e => e.currentTarget.style.opacity = '1'}>
                             <div>
                                 <h3 className="text-gray-800 font-bold text-lg">
                                     {sport.name}
@@ -123,8 +127,10 @@ function HomePage() {
                         className="flex flex-col items-center justify-center gap-2 p-6 rounded-2xl cursor-pointer"
                         style={{
                             backgroundColor: '#1A2A4A',
-                            willChange: 'background-color'
-                        }}>
+                            transition: 'background-color 0.08s ease'
+                        }}
+                        onMouseEnter={e => e.currentTarget.style.backgroundColor = '#1E3A6E'}
+                        onMouseLeave={e => e.currentTarget.style.backgroundColor = '#1A2A4A'}>
                         <span className="text-3xl">{item.icon}</span>
                         <span className="text-white text-sm">{item.label}</span>
                     </motion.div>
