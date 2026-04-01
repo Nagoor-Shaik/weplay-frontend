@@ -135,16 +135,9 @@ function HomePage() {
                         key={item.label}
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{
-                            delay: 1.2 + index * 0.15,
-                            type: 'spring',
-                            stiffness: 60
-                        }}
-                        whileHover={{
-                            scale: 1.05,
-                            backgroundColor: '#1E3A6E'
-                        }}
+                        whileHover={{ scale: 1.05, backgroundColor: '#1E3A6E' }}
                         whileTap={{ scale: 0.95 }}
+                        transition={{ duration: 0.15 }}
                         className="flex flex-col items-center justify-center gap-2 p-6 rounded-2xl cursor-pointer"
                         style={{backgroundColor: '#1A2A4A'}}>
                         <motion.span
