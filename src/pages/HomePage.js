@@ -134,7 +134,7 @@ function HomePage() {
                             type: 'spring',
                             stiffness: 80
                         }}
-                        className="flex flex-col items-center justify-center gap-2 py-8 rounded-2xl cursor-pointer"
+                        className="flex flex-col items-center justify-center gap-2 py-4 rounded-2xl cursor-pointer"
                         style={{
                             backgroundColor: '#1A2A4A',
                             transition: 'transform 0.15s ease, filter 0.15s ease',
