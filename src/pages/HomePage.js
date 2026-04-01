@@ -18,7 +18,7 @@ function HomePage() {
     ];
 
     return (
-        <div className="min-h-screen px-4 pt-8"
+        <div className="min-h-screen px-5 pt-8"
              style={{backgroundColor: '#0D0D0D'}}>
 
             {/* Header */}
@@ -27,7 +27,7 @@ function HomePage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.2, ease: 'easeOut' }}
                 className="flex items-center gap-4 mb-6">
-                <div className="w-14 h-14 rounded-full border-2 border-teal-400 overflow-hidden bg-teal-200 flex items-center justify-center text-2xl cursor-pointer">
+                <div className="w-14 h-14 rounded-full border-2 border-teal-400 bg-teal-200 flex items-center justify-center text-2xl cursor-pointer flex-shrink-0">
                     👤
                 </div>
                 <div>
@@ -45,12 +45,18 @@ function HomePage() {
 
             {/* Weekly Goal Button */}
             <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.4, type: 'spring', stiffness: 80 }}>
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.6 }}>
                 <Link to="/venues"
                       className="flex items-center justify-between mb-8 px-6 py-4 rounded-full"
-                      style={{backgroundColor: '#2A2A2A'}}>
+                      style={{
+                          backgroundColor: '#2A2A2A',
+                          border: '1px solid #3A3A3A',
+                          transition: 'border-color 0.2s ease'
+                      }}
+                      onMouseEnter={e => e.currentTarget.style.borderColor = '#00BCD4'}
+                      onMouseLeave={e => e.currentTarget.style.borderColor = '#3A3A3A'}>
                     <span className="text-white font-medium">
                         Set a Weekly Goal
                     </span>
@@ -63,7 +69,7 @@ function HomePage() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
-                className="text-white font-bold text-lg mb-4">
+                className="text-white font-bold text-lg mb-3">
                 Recents
             </motion.h2>
 
@@ -78,32 +84,30 @@ function HomePage() {
                             delay: sport.delay * 1.5,
                             type: 'spring',
                             stiffness: 60
-                        }}
-                        style={{ height: '80px' }}>
-                        <motion.div
-                            whileHover={{ scale: 1.03 }}
-                            whileTap={{ scale: 0.98 }}
-                            transition={{
-                                type: 'spring',
-                                stiffness: 400,
-                                damping: 25
-                            }}
-                            style={{
-                                height: '100%',
-                                transformOrigin: 'center center'
-                            }}>
-                            <Link to="/venues"
-                                  className="flex items-center justify-between px-5 py-4 rounded-2xl h-full"
-                                  style={{backgroundColor: '#C8F0D8'}}>
-                                <div>
-                                    <h3 className="text-gray-800 font-bold text-lg">
-                                        {sport.name}
-                                    </h3>
-                                    <p className="text-gray-600 text-sm">Check Now</p>
-                                </div>
-                                <span className="text-5xl">{sport.emoji}</span>
-                            </Link>
-                        </motion.div>
+                        }}>
+                        <Link to="/venues"
+                              className="flex items-center justify-between px-5 py-4 rounded-2xl block"
+                              style={{
+                                  backgroundColor: '#C8F0D8',
+                                  border: '1px solid transparent',
+                                  transition: 'box-shadow 0.2s ease, border-color 0.2s ease'
+                              }}
+                              onMouseEnter={e => {
+                                  e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,188,212,0.25)';
+                                  e.currentTarget.style.borderColor = '#00BCD4';
+                              }}
+                              onMouseLeave={e => {
+                                  e.currentTarget.style.boxShadow = 'none';
+                                  e.currentTarget.style.borderColor = 'transparent';
+                              }}>
+                            <div>
+                                <h3 className="text-gray-800 font-bold text-lg">
+                                    {sport.name}
+                                </h3>
+                                <p className="text-gray-600 text-sm">Check Now</p>
+                            </div>
+                            <span className="text-5xl">{sport.emoji}</span>
+                        </Link>
                     </motion.div>
                 ))}
             </div>
@@ -113,34 +117,38 @@ function HomePage() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.7 }}
-                className="text-white font-bold text-lg mb-4">
+                className="text-white font-bold text-lg mb-3">
                 Quick Actions
             </motion.h2>
 
             <div className="grid grid-cols-2 gap-3 mb-24">
                 {quickActions.map((item, index) => (
-                    <div key={item.label}
-                         style={{ height: '120px' }}>
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{
-                                delay: 0.8 + index * 0.15,
-                                type: 'spring',
-                                stiffness: 80
-                            }}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            style={{
-                                backgroundColor: '#1A2A4A',
-                                height: '100%',
-                                transformOrigin: 'center center'
-                            }}
-                            className="flex flex-col items-center justify-center gap-2 p-6 rounded-2xl cursor-pointer">
-                            <span className="text-3xl">{item.icon}</span>
-                            <span className="text-white text-sm">{item.label}</span>
-                        </motion.div>
-                    </div>
+                    <motion.div
+                        key={item.label}
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                            delay: 0.8 + index * 0.15,
+                            type: 'spring',
+                            stiffness: 80
+                        }}
+                        className="flex flex-col items-center justify-center gap-2 py-6 rounded-2xl cursor-pointer"
+                        style={{
+                            backgroundColor: '#1A2A4A',
+                            border: '1px solid #1E3A6E',
+                            transition: 'box-shadow 0.2s ease, background-color 0.2s ease'
+                        }}
+                        onMouseEnter={e => {
+                            e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,188,212,0.2)';
+                            e.currentTarget.style.backgroundColor = '#1E3A6E';
+                        }}
+                        onMouseLeave={e => {
+                            e.currentTarget.style.boxShadow = 'none';
+                            e.currentTarget.style.backgroundColor = '#1A2A4A';
+                        }}>
+                        <span className="text-3xl">{item.icon}</span>
+                        <span className="text-white text-sm">{item.label}</span>
+                    </motion.div>
                 ))}
             </div>
         </div>
