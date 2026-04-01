@@ -108,17 +108,19 @@ function HomePage() {
                 Quick Actions
             </motion.h2>
 
-            <div className="grid grid-cols-2 gap-3 mb-24">
-                {quickActions.map((item, index) => (
+            <div className="grid grid-cols-2 gap-3 mb-24" style={{isolation: 'isolate'}}>
+                {quickActions.map((item) => (
                     <motion.div
                         key={item.label}
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        whileHover={{ backgroundColor: '#1E3A6E' }}
-                        whileTap={{ backgroundColor: '#2A4A8E' }}
-                        transition={{ duration: 0.1 }}
+                        whileHover={{ scale: 1.04 }}
+                        whileTap={{ scale: 0.96 }}
+                        transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                         className="flex flex-col items-center justify-center gap-2 p-6 rounded-2xl cursor-pointer"
-                        style={{backgroundColor: '#1A2A4A'}}>
+                        style={{
+                            backgroundColor: '#1A2A4A',
+                            transformOrigin: 'center center',
+                            willChange: 'transform'
+                        }}>
                         <span className="text-3xl">{item.icon}</span>
                         <span className="text-white text-sm">{item.label}</span>
                     </motion.div>
