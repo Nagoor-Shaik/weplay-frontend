@@ -118,7 +118,10 @@ function HomePage() {
                         whileTap={{ scale: 0.95 }}
                         transition={{ duration: 0.15 }}
                         className="flex flex-col items-center justify-center gap-2 p-6 rounded-2xl cursor-pointer"
-                        style={{backgroundColor: '#1A2A4A'}}>
+                        style={{
+                            backgroundColor: '#1A2A4A',
+                            transformOrigin: 'top center'
+                        }}>
                         <span className="text-3xl">{item.icon}</span>
                         <span className="text-white text-sm">{item.label}</span>
                     </motion.div>
