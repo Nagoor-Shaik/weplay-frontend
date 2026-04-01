@@ -129,7 +129,7 @@ function HomePage() {
                 Quick Actions
             </motion.h2>
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-3 mb-24">
                 {quickActions.map((item, index) => (
                     <motion.div
                         key={item.label}
